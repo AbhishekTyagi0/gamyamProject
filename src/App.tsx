@@ -1,16 +1,8 @@
 import "./App.css";
 import Land from "./Components/Land";
-import img1 from "./assets/img1.jpg";
-import img2 from "./assets/img2.jpg";
-import img3 from "./assets/img3.jpg";
-import img4 from "./assets/img4.jpg";
-import img5 from "./assets/img5.jpg";
-import img6 from "./assets/img6.jpg";
-import img7 from "./assets/img7.jpg";
 
 import { useEffect, useState } from "react";
 import "./App.css";
-import Carousels from "./Utils/Carousel";
 
 const App: React.FC = () => {
   const [products, setProducts] = useState([]);
@@ -30,7 +22,6 @@ const App: React.FC = () => {
           throw new Error(`This is an HTTP Error: The error is ${response}`);
         }
         const data = await response.json();
-        console.log("data", data);
         setProducts(data);
       } catch (error: any) {
         setError(error);
@@ -41,12 +32,9 @@ const App: React.FC = () => {
     fetchData();
   }, []);
 
-  const slides = [img1, img2, img3, img4, img5, img6, img7];
-
   return (
     <>
       <Land LandItem={products} />
-      {/* <Carousels slides={slides} /> */}
     </>
   );
 };

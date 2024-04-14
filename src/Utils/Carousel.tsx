@@ -20,18 +20,13 @@ const Carousels = ({ slides }: Props) => {
   };
 
   return (
-    <div className="overflow-hidden relative h-[200px] rounded-t-xl ">
+    <div className="overflow-hidden relative h-[200px] rounded-t-xl">
       <div
         className="flex transition-transform ease-out duration-500 w-full"
         style={{ transform: `translateX(-${slideIndex * 100}%)` }}
       >
         {slides.map((slide) => (
-          <img
-            src={slide}
-            alt="slide"
-            className="w-full h-full object-cover"
-            key={slide}
-          />
+          <img src={slide} alt="slide" className="w-full h-200" key={slide} />
         ))}
       </div>
       <div className="absolute inset-0 flex items-center justify-between p-4">
@@ -39,13 +34,13 @@ const Carousels = ({ slides }: Props) => {
           onClick={handlePrev}
           className="text-gray-800 p-1 rounded-full shadow bg-white-80 hover:bg-white"
         >
-          <ChevronLeft size={40} />
+          <ChevronLeft size={24} />
         </button>
         <button
           onClick={handleNext}
           className="text-gray-800 p-1 rounded-full shadow bg-white-80 hover:bg-white"
         >
-          <ChevronRight size={40} />
+          <ChevronRight size={24} />
         </button>
       </div>
       <div className="absolute bottom-4 right-0 left-0">
