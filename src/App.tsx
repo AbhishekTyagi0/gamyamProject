@@ -3,6 +3,7 @@ import Land from "./Components/Land";
 
 import { useEffect, useState } from "react";
 import "./App.css";
+import Footer from "./Components/Footer";
 
 const App: React.FC = () => {
   const [products, setProducts] = useState([]);
@@ -35,6 +36,7 @@ const App: React.FC = () => {
   return (
     <>
       <Land LandItem={products} />
+      <Footer />
     </>
   );
 };

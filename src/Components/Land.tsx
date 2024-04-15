@@ -5,6 +5,7 @@ import icon1 from "../assets/icon1.png";
 import { BsCurrencyRupee } from "react-icons/bs";
 import InfiniteScroll from "react-infinite-scroller";
 import { useState } from "react";
+import Spinner from "../Utils/Spinner";
 
 interface LandProps {
   LandItem: any;
@@ -12,7 +13,7 @@ interface LandProps {
 
 const Land: React.FC<LandProps> = (props: LandProps) => {
   const { LandItem } = props;
-  const [page, setPage] = useState(0);
+  const [page, setPage] = useState(1);
   const [hasMore, setHasMore] = useState(true);
   const [products, setProducts] = useState<any[]>(LandItem.results || []);
 
@@ -30,7 +31,9 @@ const Land: React.FC<LandProps> = (props: LandProps) => {
         throw new Error(`This is an HTTP Error: The error is ${response}`);
       }
       const data = await response.json();
-      setProducts((prevProducts: any[]) => [...prevProducts, ...data.results]);
+      const uniqueProducts = [...new Set([...products, ...data.results])];
+      setProducts(uniqueProducts);
+
       setPage((prevPage) => prevPage + 1);
       setHasMore(data.next !== null);
     } catch (error: any) {
@@ -45,16 +48,16 @@ const Land: React.FC<LandProps> = (props: LandProps) => {
       hasMore={hasMore}
       loader={
         <div className="loader" key={`loader-${products.length}`}>
-          Loading ...
+          <Spinner />
         </div>
       }
     >
-      <div className="w-full grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 ">
+      <div className="w-full grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
         {products &&
           products.map((item: any) => (
             <div
               key={item.id}
-              className="w-[400px] h-[300px] shadow-md hover:shadow-lg"
+              className="w-[340px] lg:w-[400px] h-[300px] shadow-md hover:shadow-lg"
             >
               {item.land_media && (
                 <Carousels

@@ -26,7 +26,12 @@ const Carousels = ({ slides }: Props) => {
         style={{ transform: `translateX(-${slideIndex * 100}%)` }}
       >
         {slides.map((slide) => (
-          <img src={slide} alt="slide" className="w-full h-200" key={slide} />
+          <img
+            src={slide}
+            alt="slide"
+            className="w-full h-200 object-cover"
+            key={slide}
+          />
         ))}
       </div>
       <div className="absolute inset-0 flex items-center justify-between p-4">
@@ -47,6 +52,7 @@ const Carousels = ({ slides }: Props) => {
         <div className="flex items-center justify-center gap-2">
           {slides.map((_, index) => (
             <div
+              key={index}
               className={`transition-all w-3 h-3 bg-white rounded-full ${
                 slideIndex === index ? "p-2" : "bg-opacity-50"
               }`}
