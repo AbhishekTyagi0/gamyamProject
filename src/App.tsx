@@ -4,6 +4,7 @@ import Land from "./Components/Land";
 import { useEffect, useState } from "react";
 import "./App.css";
 import Footer from "./Components/Footer";
+import Navbar from "./Components/Navbar";
 
 const App: React.FC = () => {
   const [products, setProducts] = useState([]);
@@ -35,6 +36,7 @@ const App: React.FC = () => {
 
   return (
     <>
+      <Navbar />
       <Land LandItem={products} />
       <Footer />
     </>

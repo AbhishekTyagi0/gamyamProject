@@ -52,7 +52,7 @@ const Land: React.FC<LandProps> = (props: LandProps) => {
         </div>
       }
     >
-      <div className="w-full grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
+      <div className="px-8 mt-32 w-full grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
         {products &&
           products.map((item: any) => (
             <div
