@@ -7,12 +7,14 @@ import Footer from "./Components/Footer";
 import Navbar from "./Components/Navbar";
 
 const App: React.FC = () => {
-  const [products, setProducts] = useState([]);
+  const [products, setProducts] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
+  const [error, setError] = useState<Error | null>(null);
 
   useEffect(() => {
     const fetchData = async () => {
+      setLoading(true);
+      setError(null);
       try {
         const response = await fetch(
           "https://prod-be.1acre.in/lands/?ordering=-updated_at&page=1&page_size=10",
@@ -33,6 +35,14 @@ const App: React.FC = () => {
     };
     fetchData();
   }, []);
+
+  if (loading) {
+    return <div>Loading...</div>;
+  }
+
+  if (error) {
+    return <div>Error: {error.message}</div>;
+  }
 
   return (
     <>
